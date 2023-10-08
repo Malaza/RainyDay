@@ -99,6 +99,10 @@
 		59D0C6CB2ACC66FF00E31E9C /* RainyDay */ = {
 			isa = PBXGroup;
 			children = (
+				59D0C6FF2ACD367700E31E9C /* New Group3 */,
+				59D0C6FE2ACD367400E31E9C /* New Group2 */,
+				59D0C6FD2ACD367100E31E9C /* New Group1 */,
+				59D0C6FC2ACD366E00E31E9C /* New Group */,
 				59D0C6CC2ACC66FF00E31E9C /* AppDelegate.swift */,
 				59D0C6CE2ACC66FF00E31E9C /* SceneDelegate.swift */,
 				59D0C6D02ACC66FF00E31E9C /* ViewController.swift */,
@@ -125,6 +129,34 @@
 				59D0C6EF2ACC670200E31E9C /* RainyDayUITestsLaunchTests.swift */,
 			);
 			path = RainyDayUITests;
+			sourceTree = "<group>";
+		};
+		59D0C6FC2ACD366E00E31E9C /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		59D0C6FD2ACD367100E31E9C /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		59D0C6FE2ACD367400E31E9C /* New Group2 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group2";
+			sourceTree = "<group>";
+		};
+		59D0C6FF2ACD367700E31E9C /* New Group3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group3";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
