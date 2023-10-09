@@ -7,14 +7,9 @@
 
 import Foundation
 
-public enum WeatherType: String {
-    case cloudy = "cloudy"
-    case rainy = "rainy"
-    case sunny = "sunny"
-}
-
 struct WeatherForecastModel {
+    var dt: String?
     var temp: String?
     var mainWeather: String?
-    var type: WeatherType = .sunny
+    var icon: String?
 }

@@ -31,7 +31,7 @@ class ForecastPresenter: ForecastPresentable {
         
         switch result {
             case .success(let forecast):
-            let modelList = self.transformToModelList(response: forecast)
+            let modelList = WeatherForecastMapper.transformToModelList(response: forecast)
             self.forecastModelList = modelList
             view?.weatherForecastSuccess()
             case .failure(let error):
@@ -43,32 +43,7 @@ class ForecastPresenter: ForecastPresentable {
         return self.forecastModelList?[index]
     }
     
-    func numberOfItems() -> Int? {
-        return self.forecastModelList?.count
-    }
-    
-    
-    //MARK: - Transform
-    private func transformToModelList(response: WeatherForecastResponse) -> [WeatherForecastModel] {
-        
-        var array = [WeatherForecastModel]()
-        
-        if let response = response.list {
-            for forecastResponse in response {
-                let forecast = self.transformToForecastModel(response: forecastResponse)
-                array.append(forecast)
-            }
-        }
-        return array
-    }
-    
-    private func transformToForecastModel(response: ForecastResponse) -> WeatherForecastModel {
-        var model = WeatherForecastModel()
-        let temp = Int(response.main?.temp ?? 0)
-        model.temp = "\(temp)º"
-        if let weather = response.weather?[0] {
-            model.mainWeather = weather.main
-        }
-        return model
+    func numberOfItemsInSection(section: Int) -> Int? {
+        return section == 0 ? 1 : (self.forecastModelList?.count ?? 0 - 1)
     }
 }

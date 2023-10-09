@@ -14,31 +14,35 @@ class ForecastTodayTableViewCell: UITableViewCell {
     //MARK:  - Outlets
     private let currentWeatherImageView: UIImageView = {
         let currentWeatherImageView = UIImageView()
-        currentWeatherImageView.contentMode = .scaleAspectFill
-//        weatherImageView.clipsToBounds = true
-        currentWeatherImageView.backgroundColor = .red
+        currentWeatherImageView.contentMode = .center
         return currentWeatherImageView
     }()
     
     private let currentWeatherLabel: UILabel = {
-        let currentWeather = UILabel()
-        currentWeather.textAlignment = .center
-        currentWeather.textColor = .white
-        currentWeather.backgroundColor = .clear
-        currentWeather.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
-        currentWeather.numberOfLines = 0
-        currentWeather.translatesAutoresizingMaskIntoConstraints = false
-        return currentWeather
+        let currentWeatherLabel = UILabel()
+        currentWeatherLabel.textAlignment = .center
+        currentWeatherLabel.textColor = .white
+        currentWeatherLabel.backgroundColor = .clear
+        currentWeatherLabel.numberOfLines = 0
+        return currentWeatherLabel
     }()
+    
     
     //MARK: - Lifecycle
     func configureWithModel(model: WeatherForecastModel?) {
-        self.currentWeatherLabel.attributedText = self.attributedStringForTitle(title: model?.temp ?? "",
-                                                                                subTitle: model?.mainWeather?.uppercased() ?? "")
+        if let model = model {
+            self.currentWeatherImageView.loadImage(url: model.icon ?? "")
+            self.currentWeatherLabel.attributedText = self.attributedStringForTitle(title: model.temp ?? "",
+                                                                                    subTitle: model.mainWeather?.uppercased() ?? "")
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        selectionStyle = .none
         
         self.addSubview(currentWeatherImageView)
         self.addSubview(currentWeatherLabel)
@@ -55,13 +59,7 @@ class ForecastTodayTableViewCell: UITableViewCell {
         currentWeatherImageView.frame = CGRectMake((width / 2) - 20, 30, 40, 40)
         currentWeatherLabel.frame = CGRectMake(0, currentWeatherImageView.frame.size.height + 10, contentView.frame.size.width, 200)
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
-        selectionStyle = .none
-    }
+
 
     
     //MARK: - Helper methods

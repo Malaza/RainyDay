@@ -18,7 +18,7 @@ struct WeatherForecastResponse: Decodable {
 
 struct ForecastResponse: Decodable {
     
-    var dt: Int?
+    var dt: Double?
     var main: MainResponse?
     var weather: [WeatherResponse]?
     var clouds: CloudsResponse?

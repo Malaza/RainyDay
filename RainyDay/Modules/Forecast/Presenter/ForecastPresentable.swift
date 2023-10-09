@@ -20,5 +20,5 @@ protocol ForecastPresentable {
     //MARK: - Output
     func interactorDidFetchWeatherForecast(with result: Result<WeatherForecastResponse, Error>)
     func forecastModelAtIndex(index: Int) -> WeatherForecastModel?
-    func numberOfItems() -> Int?
+    func numberOfItemsInSection(section: Int) -> Int?
 }

@@ -1,6 +1,6 @@
 //
 //  UIColor.swift
-//  WeatherOrNot
+//  RainyDay
 //
 //  Created by Mthokozisi Malaza on 2023/08/30.
 //

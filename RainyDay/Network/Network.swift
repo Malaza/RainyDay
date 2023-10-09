@@ -7,15 +7,11 @@
 
 import Foundation
 
-public enum NetworkError: Error {
-    case failed
-}
-
 class Network: Networkable {
     
     func networkGet(request: WeatherForecastRequest) async throws -> Any {
         
-        let request = getURLRequest(lat: request.lat ?? 0, long: request.long ?? 0, cnt: request.cnt ?? 0, apiKey: Constants.apiKey)
+        let request = getMutableURLRequest(lat: request.lat ?? 0, long: request.long ?? 0, cnt: request.cnt ?? 0, apiKey: Constants.apiKey)
         request.httpMethod = "GET"
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -35,10 +31,28 @@ class Network: Networkable {
         }
     }
     
+    public static func downloadImageData(from url: URL, completion: @escaping (Any?, Error?) -> Void) {
+        
+        let request = URLRequest(url: url)
+        let dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+            
+            if (error != nil) {
+                completion(data, nil)
+            }
+            else {
+                completion(nil, error)
+            }
+        })
+        dataTask.resume()
+
+    }
+    
+    
     //MARK: - URL
-    private func getURLRequest(lat: Double, long: Double, cnt: Int, apiKey: String) -> NSMutableURLRequest {
+    private func getMutableURLRequest(lat: Double, long: Double, cnt: Int, apiKey: String) -> NSMutableURLRequest {
         return NSMutableURLRequest(url: NSURL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(long)&cnt=\(cnt)&appid=\(apiKey)")! as URL,
                                    cachePolicy: .useProtocolCachePolicy,
                                    timeoutInterval: 10.0)
     }
 }
+

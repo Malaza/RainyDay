@@ -76,22 +76,26 @@ class ForecastViewController: UIViewController {
 
 extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfItems() ?? 0
+        return presenter?.numberOfItemsInSection(section: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let model = presenter?.forecastModelAtIndex(index: indexPath.row)
-        
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: ForecastTodayTableViewCell.identifier) as? ForecastTodayTableViewCell {
+                let model = presenter?.forecastModelAtIndex(index: indexPath.row)
                 cell.configureWithModel(model: model)
                 return cell
             }
         }
-        else {
+        else if indexPath.section == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: ForecastUpcomingTableViewCell.identifier) as? ForecastUpcomingTableViewCell {
+                let model = presenter?.forecastModelAtIndex(index: indexPath.row)
                 cell.configureWithModel(model: model)
                 return cell
             }
@@ -100,7 +104,7 @@ extension ForecastViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == 0 ? 200 : 60
+        return indexPath.section == 0 ? 250 : 50
     }
 }
 
