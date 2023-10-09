@@ -44,7 +44,7 @@ class WeatherForecastMapper {
     private static func transformUnixDateToDay(dt: Double) -> String {
         let date = Date(timeIntervalSince1970: dt)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "EEEE"
         let localDate = dateFormatter.string(from: date)
         return localDate
     }
