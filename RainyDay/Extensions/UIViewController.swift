@@ -29,13 +29,4 @@ extension UIViewController {
         animationView?.stop()
         animationView?.removeFromSuperview()
     }
-    
-    
-    //MARK: - Error message
-    @MainActor
-    func showErrorMessage(message:String) {
-        let alert = UIAlertController(title: "PokeMe", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
 }

@@ -12,6 +12,7 @@ class ForecastPresenter: ForecastPresentable {
     var view: ForecastViewable?
     var router: ForecastRoutable?
     var interactor: ForecastInteractable?
+    var forecastModelList: [WeatherForecastModel]?
 
     init(interactor: ForecastInteractable, router: ForecastRoutable, view: ForecastViewable) {
         self.view = view
@@ -30,11 +31,20 @@ class ForecastPresenter: ForecastPresentable {
         
         switch result {
             case .success(let forecast):
-            let model = self.transformToModelList(response: forecast)
-            view?.presenterDidFetchWeatherForecast(with: .success(model))
+            let modelList = self.transformToModelList(response: forecast)
+            self.forecastModelList = modelList
+            view?.weatherForecastSuccess()
             case .failure(let error):
-            view?.presenterDidFetchWeatherForecast(with: .failure(error))
+            view?.weatherForecastFailure(with: error)
         }
+    }
+    
+    func forecastModelAtIndex(index: Int) -> WeatherForecastModel? {
+        return self.forecastModelList?[index]
+    }
+    
+    func numberOfItems() -> Int? {
+        return self.forecastModelList?.count
     }
     
     

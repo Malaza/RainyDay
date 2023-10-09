@@ -9,5 +9,6 @@ import Foundation
 
 protocol ForecastViewable {
     func fetchForecast()
-    func presenterDidFetchWeatherForecast(with result: Result<[WeatherForecastModel], Error>)
+    func weatherForecastSuccess()
+    func weatherForecastFailure(with error: Error)
 }
