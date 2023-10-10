@@ -9,7 +9,7 @@ The naming convention used aligns with the Viper naming convention, as well as t
 The view shows forecasts for every 3 hours, even though the data is supposed to bring back forecasts for every day. The API I used allows for retrieving the weekly forecast, but it returns a list of 3 hour forecasts so in a day you will get 8 forecasts. https://openweathermap.org/forecast5.
 
 Unfortunately to get daily forecasts from this API, you need to pay by adding your credit card details and I was uncomfortable with that. These are the APIs that could have achieved a more accurate daily forecast:
-https://openweathermap.org/api/one-call-3#current
+https://openweathermap.org/api/one-call-3#current or
 https://openweathermap.org/forecast16
 
 I want to add that I also could have achieved the daily forecast by filtering through the items and getting only items if they are in the following day, but I didn't have enough time to follow that approach.
