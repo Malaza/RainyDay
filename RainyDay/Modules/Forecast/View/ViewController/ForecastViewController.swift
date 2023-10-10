@@ -114,6 +114,8 @@ extension ForecastViewController: ForecastViewable {
     func fetchForecast() {
         if locationManager?.authorizationStatus == .authorizedAlways || locationManager?.authorizationStatus == .authorizedWhenInUse {
             if let coordinate = locationManager?.location?.coordinate {
+                
+                self.showLoadingView()
                 let request = WeatherForecastRequest(lat: coordinate.latitude, long: coordinate.longitude, cnt: 7)
                 presenter?.fetchForecast(request: request)
             }
@@ -125,6 +127,8 @@ extension ForecastViewController: ForecastViewable {
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
             }
+            
+            self.hideLoadingView()
             self.tableView.reloadData()
         }
     }

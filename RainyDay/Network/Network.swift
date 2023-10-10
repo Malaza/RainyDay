@@ -31,9 +31,9 @@ class Network: Networkable {
         }
     }
     
-    public static func downloadImageData(from url: URL, completion: @escaping (Any?, Error?) -> Void) {
+    public static func downloadImageData(from icon: String, completion: @escaping (Any?, Error?) -> Void) {
         
-        let request = URLRequest(url: url)
+        let request = URLRequest(url: URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png")!)
         let dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             
             if (error == nil) {

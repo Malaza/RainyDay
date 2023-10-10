@@ -22,7 +22,7 @@ class ForecastInteractor: ForecastInteractable {
                 let forecast = try JSONDecoder().decode(WeatherForecastResponse.self, from: result as! Data)
                 presenter?.interactorDidFetchWeatherForecast(with: .success(forecast))
             }
-            catch {
+            catch let error {
                 presenter?.interactorDidFetchWeatherForecast(with: .failure(error))
             }
         }

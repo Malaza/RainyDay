@@ -13,7 +13,6 @@ extension UIImageView {
     
     func loadImage(url: String) {
         
-        guard let url = URL(string: "https://openweathermap.org/img/wn/\(url)@2x.png") else { return }
         image = nil
         
         if let imageFromCache = imageCache.object(forKey: url as AnyObject) {

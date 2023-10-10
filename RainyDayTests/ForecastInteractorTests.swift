@@ -6,36 +6,47 @@
 //
 
 import XCTest
+@testable import RainyDay
+
+enum TestError: Error {
+    case interactorInstantiationFailed
+}
 
 final class ForecastInteractorTests: XCTestCase {
-
+    
+    var interactor: ForecastInteractor?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        let vc = ForecastViewController()
+        interactor = ForecastInteractor()
+        let router = ForecastRouter()
+        guard let nonEmptyInteractor = interactor else { throw TestError.interactorInstantiationFailed }
+        let presenter = ForecastPresenter(interactor: nonEmptyInteractor, router: router, view: vc)
+        vc.presenter = presenter
+        interactor?.presenter = presenter
     }
 
+    
+    
+    func testThatServiceIsAvailable() throws {
+        XCTAssertNotNil(interactor?.service)
+    }
+
+    func testThatInteractorInstantiated() throws {
+        XCTAssertNotNil(interactor?.presenter)
+    }
+    
+    func testThatRouterInstantiated() throws {
+        XCTAssertNotNil(interactor?.presenter?.router)
+    }
+
+    func testThatVCInstantiated() throws {
+        XCTAssertNotNil(interactor?.presenter?.view)
+    }
+    
+    func testPerformanceExample() throws {}
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        interactor = nil
     }
 }

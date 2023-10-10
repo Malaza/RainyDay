@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59B249232AD41EDB00AE8185 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B249222AD41EDA00AE8185 /* UIColor.swift */; };
 		59B249262AD425AE00AE8185 /* WeatherForecastMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B249252AD425AE00AE8185 /* WeatherForecastMapper.swift */; };
 		59B249282AD4352800AE8185 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B249272AD4352800AE8185 /* UIImageView.swift */; };
 		59B2492A2AD43FE800AE8185 /* ForecastInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B249292AD43FE800AE8185 /* ForecastInteractorTests.swift */; };
 		59B2492C2AD43FFE00AE8185 /* ForecastPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2492B2AD43FFE00AE8185 /* ForecastPresenterTests.swift */; };
+		59B2492E2AD4F3C000AE8185 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 59B2492D2AD4F3C000AE8185 /* loading.json */; };
 		59D0C6CD2ACC66FF00E31E9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0C6CC2ACC66FF00E31E9C /* AppDelegate.swift */; };
 		59D0C6CF2ACC66FF00E31E9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D0C6CE2ACC66FF00E31E9C /* SceneDelegate.swift */; };
 		59D0C6D62ACC670100E31E9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D0C6D52ACC670100E31E9C /* Assets.xcassets */; };
@@ -56,11 +56,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		59B249222AD41EDA00AE8185 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		59B249252AD425AE00AE8185 /* WeatherForecastMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastMapper.swift; sourceTree = "<group>"; };
 		59B249272AD4352800AE8185 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		59B249292AD43FE800AE8185 /* ForecastInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastInteractorTests.swift; sourceTree = "<group>"; };
 		59B2492B2AD43FFE00AE8185 /* ForecastPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastPresenterTests.swift; sourceTree = "<group>"; };
+		59B2492D2AD4F3C000AE8185 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		59D0C6C92ACC66FF00E31E9C /* RainyDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainyDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D0C6CC2ACC66FF00E31E9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59D0C6CE2ACC66FF00E31E9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +166,7 @@
 				59D0C6D52ACC670100E31E9C /* Assets.xcassets */,
 				59D0C6D72ACC670100E31E9C /* LaunchScreen.storyboard */,
 				59D0C6DA2ACC670100E31E9C /* Info.plist */,
+				59B2492D2AD4F3C000AE8185 /* loading.json */,
 			);
 			path = RainyDay;
 			sourceTree = "<group>";
@@ -200,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				59B249272AD4352800AE8185 /* UIImageView.swift */,
-				59B249222AD41EDA00AE8185 /* UIColor.swift */,
 				59D4797C2AD2FA5F009EB5C2 /* UIViewController.swift */,
 			);
 			path = Extensions;
@@ -443,6 +443,7 @@
 			files = (
 				59D0C6D92ACC670100E31E9C /* LaunchScreen.storyboard in Resources */,
 				59D0C6D62ACC670100E31E9C /* Assets.xcassets in Resources */,
+				59B2492E2AD4F3C000AE8185 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +479,6 @@
 				59B249262AD425AE00AE8185 /* WeatherForecastMapper.swift in Sources */,
 				59D4797D2AD2FA5F009EB5C2 /* UIViewController.swift in Sources */,
 				59D479922AD2FC28009EB5C2 /* ForecastRoutable.swift in Sources */,
-				59B249232AD41EDB00AE8185 /* UIColor.swift in Sources */,
 				59D479A02AD3A545009EB5C2 /* ForecastTodayTableViewCell.swift in Sources */,
 				59D479942AD2FC32009EB5C2 /* ForecastRouter.swift in Sources */,
 				59D4797B2AD2EF61009EB5C2 /* Network.swift in Sources */,
