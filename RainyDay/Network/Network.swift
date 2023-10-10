@@ -36,11 +36,15 @@ class Network: Networkable {
         let request = URLRequest(url: url)
         let dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             
-            if (error != nil) {
-                completion(data, nil)
+            if (error == nil) {
+                DispatchQueue.main.async {
+                    completion(data, nil)
+                }
             }
             else {
-                completion(nil, error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             }
         })
         dataTask.resume()

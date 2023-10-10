@@ -28,10 +28,19 @@ class WeatherForecastMapper {
     }
     
     private static func transformToForecastModel(response: ForecastResponse) -> WeatherForecastModel {
+        
         var model = WeatherForecastModel()
         model.dt = transformUnixDateToDay(dt: response.dt ?? 0)
+        
         let temp = Int(response.main?.temp ?? 0)
         model.temp = "\(temp)º"
+        
+        let tempMin = Int(response.main?.temp_min ?? 0)
+        model.tempMin = "\(tempMin)º"
+        
+        let tempMax = Int(response.main?.temp_max ?? 0)
+        model.tempMax = "\(tempMax)º"
+        
         if response.weather?.count ?? 0 > 0 {
             if let weather = response.weather?.last {
                 model.mainWeather = weather.main

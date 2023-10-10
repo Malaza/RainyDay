@@ -32,7 +32,7 @@ class ForecastTodayTableViewCell: UITableViewCell {
     func configureWithModel(model: WeatherForecastModel?) {
         if let model = model {
             self.currentWeatherImageView.loadImage(url: model.icon ?? "")
-            self.currentWeatherLabel.attributedText = self.attributedStringForTitle(title: model.temp ?? "",
+            self.currentWeatherLabel.attributedText = self.attributedStringForTitle(title: "\(model.tempMin ?? "") | \(model.tempMax ?? "")",
                                                                                     subTitle: model.mainWeather?.uppercased() ?? "")
         }
     }
@@ -75,15 +75,15 @@ class ForecastTodayTableViewCell: UITableViewCell {
 
         attrHeading = NSMutableAttributedString(string: title)
         let range = NSRange.init(location: 0, length: title.count)
-        attrHeading.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 70.0, weight: .semibold), range: range)
-        attrHeading.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: range)
+        attrHeading.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 55.0, weight: .semibold), range: range)
+        attrHeading.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray, range: range)
         mainAttributedString.append(attrHeading)
 
         let stringFormat = String(format: "\n\(subTitle)")
         attrContent = NSMutableAttributedString(string: stringFormat)
         let thisRange = NSRange.init(location: 0, length: stringFormat.count)
         attrContent.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 25.0, weight: .medium), range: thisRange)
-        attrContent.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: thisRange)
+        attrContent.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.gray, range: thisRange)
         mainAttributedString.append(attrContent)
 
         mainAttributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle,

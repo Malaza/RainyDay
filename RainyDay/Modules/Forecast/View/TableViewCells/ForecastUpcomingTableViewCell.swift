@@ -21,29 +21,32 @@ class ForecastUpcomingTableViewCell: UITableViewCell {
     private let dateLabel: UILabel = {
         let dateLabel = UILabel()
         dateLabel.textAlignment = .center
-        dateLabel.textColor = .white
-        dateLabel.backgroundColor = .clear
+        dateLabel.textColor = .gray
         dateLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         dateLabel.numberOfLines = 0
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         return dateLabel
     }()
     
-//    private let currentWeatherLabel: UILabel = {
-//        let currentWeather = UILabel()
-//        currentWeather.textAlignment = .center
-//        currentWeather.textColor = .white
-//        currentWeather.backgroundColor = .clear
-//        currentWeather.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
-//        currentWeather.numberOfLines = 0
-//        currentWeather.translatesAutoresizingMaskIntoConstraints = false
-//        return currentWeather
-//    }()
+    private let currentWeatherLabel: UILabel = {
+        let currentWeatherLabel = UILabel()
+        currentWeatherLabel.textAlignment = .center
+        currentWeatherLabel.textColor = .gray
+        currentWeatherLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        currentWeatherLabel.numberOfLines = 0
+        currentWeatherLabel.translatesAutoresizingMaskIntoConstraints = false
+        return currentWeatherLabel
+    }()
     
     
     //MARK: - Lifecycle
     func configureWithModel(model: WeatherForecastModel?) {
-        dateLabel.text = model?.dt
+        
+        if let model = model {
+            dateLabel.text = model.dt
+            currentWeatherLabel.text = "H: \(model.tempMin ?? "") | L: \(model.tempMax ?? "")"
+            self.currentWeatherImageView.loadImage(url: model.icon ?? "")
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -53,12 +56,14 @@ class ForecastUpcomingTableViewCell: UITableViewCell {
         contentView.backgroundColor = .clear
         selectionStyle = .none
         
-        self.addSubview(currentWeatherImageView)
+        contentView.addSubview(currentWeatherImageView)
         currentWeatherImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        self.addSubview(dateLabel)
+        contentView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(currentWeatherLabel)
+        currentWeatherLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
@@ -69,22 +74,30 @@ class ForecastUpcomingTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         NSLayoutConstraint.activate([
-            currentWeatherImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            currentWeatherImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            currentWeatherImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 20),
-            currentWeatherImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 20)
+            currentWeatherImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5.0),
+            currentWeatherImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 35.0),
+            currentWeatherImageView.heightAnchor.constraint(equalToConstant: 40.0),
+            currentWeatherImageView.widthAnchor.constraint(equalToConstant: 40.0)
+            
         ])
         
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            dateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
-            dateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 20),
+            dateLabel.leftAnchor.constraint(equalTo: currentWeatherImageView.rightAnchor, constant: 20),
             dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            currentWeatherLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            currentWeatherLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -35),
+            currentWeatherLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
         ])
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        currentWeatherImageView.image = nil
         dateLabel.text = nil
+        currentWeatherLabel.text = nil
     }
 }

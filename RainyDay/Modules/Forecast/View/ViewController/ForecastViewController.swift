@@ -36,7 +36,7 @@ class ForecastViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         
         refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
@@ -63,7 +63,7 @@ class ForecastViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        view.backgroundColor = .gray
+        view.backgroundColor = .systemBackground
     }
     
     

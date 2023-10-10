@@ -10,6 +10,8 @@ import Foundation
 struct WeatherForecastModel {
     var dt: String?
     var temp: String?
+    var tempMin: String?
+    var tempMax: String?
     var mainWeather: String?
     var icon: String?
 }
