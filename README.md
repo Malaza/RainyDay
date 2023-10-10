@@ -8,8 +8,11 @@ The naming convention used aligns with the Viper naming convention, as well as t
 
 The view shows forecasts for every 3 hours, even though the data is supposed to bring back forecasts for every day. The API I used allows for retrieving the weekly forecast, but it returns a list of 3 hour forecasts so in a day you will get 8 forecasts. https://openweathermap.org/forecast5.
 
-Unfortunately to get daily forecasts on this API, you need to pay by adding your credit card details and I was uncomfortable wit that. These are the APIs that could have achieved a more accurate daily forecast:
+Unfortunately to get daily forecasts from this API, you need to pay by adding your credit card details and I was uncomfortable with that. These are the APIs that could have achieved a more accurate daily forecast:
 https://openweathermap.org/api/one-call-3#current
+https://openweathermap.org/forecast16
+
+I want to add that I also could have achieved the daily forecast by filtering through the items and getting only items if they are in the following day, but I didn't have enough time to follow that approach.
 
 # Architecture
 I used the VIPER architecture in the project. I created views, table views as well as custom views to drive the layout. The presenter and interactor are pretty straightforward in what they do. The router is responsible for creating, as well as navigating to/from view controllers.
@@ -38,3 +41,4 @@ There are some items I intentionally left out, because it wasn't priority or its
 2. **Extensions:** These classes are used to assist in simplifying the implementation, as well as avoid code reuse by writing once, and using at various places.
 3. **Views:** I used the attributedStringForTitle: method to circumvent using two labels instead of one, for the heading and the content.
 4. **Presenter:** The presenter uses a transform class, which does the heavy lifting of the transformation of data from response to view model objects
+5. I implemented the background refreshing of data using the BackgroundTasks api.
