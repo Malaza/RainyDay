@@ -44,8 +44,11 @@ class ForecastTodayTableViewCell: UITableViewCell {
         contentView.backgroundColor = .clear
         selectionStyle = .none
         
-        self.addSubview(currentWeatherImageView)
-        self.addSubview(currentWeatherLabel)
+        contentView.addSubview(currentWeatherImageView)
+        currentWeatherImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(currentWeatherLabel)
+        currentWeatherLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
@@ -55,12 +58,22 @@ class ForecastTodayTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let width = contentView.frame.size.width
-        currentWeatherImageView.frame = CGRectMake((width / 2) - 20, 30, 40, 40)
-        currentWeatherLabel.frame = CGRectMake(0, currentWeatherImageView.frame.size.height + 10, contentView.frame.size.width, 200)
+        NSLayoutConstraint.activate([
+            currentWeatherImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20.0),
+            currentWeatherImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            currentWeatherImageView.heightAnchor.constraint(equalToConstant: 40.0),
+            currentWeatherImageView.widthAnchor.constraint(equalToConstant: 40.0)
+            
+        ])
+        
+        NSLayoutConstraint.activate([
+            currentWeatherLabel.topAnchor.constraint(equalTo: currentWeatherImageView.bottomAnchor, constant: 20.0),
+            currentWeatherLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            currentWeatherLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 20),
+            currentWeatherLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 20.0)
+        ])
     }
-
-
+    
     
     //MARK: - Helper methods
     func attributedStringForTitle(title:String, subTitle:String) -> NSAttributedString {

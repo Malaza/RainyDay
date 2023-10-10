@@ -7,10 +7,11 @@
 
 import UIKit
 import CoreLocation
+import BackgroundTasks
 
 class ForecastViewController: UIViewController {
     
-
+    
     //MARK: - Outlets
     private let tableView: UITableView = {
         let table = UITableView()
@@ -54,13 +55,20 @@ class ForecastViewController: UIViewController {
         ])
     }
     
+    private func registerForNotifications() {
+        NotificationCenter.default.addObserver(forName: Notification.Name(Constants.completedNotificationName), object: nil, queue: nil) { (notification) in
+            self.fetchForecast()
+        }
+    }
+    
     //MARK:  - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocationManager()
         setupTableView()
+        registerForNotifications()
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.backgroundColor = .systemBackground

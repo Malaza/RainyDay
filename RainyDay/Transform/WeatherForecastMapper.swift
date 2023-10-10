@@ -9,10 +9,6 @@ import Foundation
 
 class WeatherForecastMapper {
     
-    static let rainCode = 500...600
-    static let cloudCode = 800...900
-    
-    
     //MARK: - Transform
     public static func transformToModelList(response: WeatherForecastResponse) -> [WeatherForecastModel] {
         

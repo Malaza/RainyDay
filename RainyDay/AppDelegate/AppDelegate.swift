@@ -6,21 +6,18 @@
 //
 
 import UIKit
+import BackgroundTasks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     
-//    static let bgAppTaskId = "your.background.task.identifier"
-//    var bgTask: BGAppRefreshTask?
-//    lazy var bgExpirationHandler = {{
-//        if let task = self.bgTask {
-//            task.setTaskCompleted(success: true)
-//        }
-//    }}()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        BGTaskScheduler.shared.register ( forTaskWithIdentifier: Constants.fetchNotificationName, using: nil) { (task) in
+            self.appRefreshTask(task: task as! BGAppRefreshTask)
+        }
         
         let weatherView = ForecastRouter.setupModule()
         let navigationController = UINavigationController(rootViewController: weatherView)
@@ -30,18 +27,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = window
         return true
     }
-
-//    func applicationDidEnterBackground(_ application: UIApplication) {
-//        scheduleFirebasePostTask(minutes: 10) // We can set our intial request to anything we want.
-//    }
     
     
-    // MARK: UISceneSession Lifecycle
+    //MARK: - Helper methods
+    func appRefreshTask(task: BGAppRefreshTask) {
+        
+        task.expirationHandler = {
+            task.setTaskCompleted(success: false)
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(Constants.completedNotificationName),
+                                        object: self, userInfo: nil)
+        scheduleBackgroundFetch()
+    }
+    
+    func scheduleBackgroundFetch() {
+        
+        let forecastFetchTask = BGAppRefreshTaskRequest(identifier: Constants.fetchNotificationName)
+        forecastFetchTask.earliestBeginDate = Date(timeIntervalSinceNow: 3600)
+        
+        do {
+            try BGTaskScheduler.shared.submit(forecastFetchTask)
+        }
+        catch {
+            print("Fetch failed: \(error.localizedDescription)")
+        }
+    }
+    
+    
+    //MARK: UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {}
-
+    
     
 }

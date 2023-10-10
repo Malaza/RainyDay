@@ -93,11 +93,4 @@ class ForecastUpcomingTableViewCell: UITableViewCell {
             currentWeatherLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
         ])
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        currentWeatherImageView.image = nil
-        dateLabel.text = nil
-        currentWeatherLabel.text = nil
-    }
 }

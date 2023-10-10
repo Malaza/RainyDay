@@ -124,14 +124,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		59B249242AD4257100AE8185 /* Mappers */ = {
-			isa = PBXGroup;
-			children = (
-				59B249252AD425AE00AE8185 /* WeatherForecastMapper.swift */,
-			);
-			path = Mappers;
-			sourceTree = "<group>";
-		};
 		59D0C6C02ACC66FF00E31E9C = {
 			isa = PBXGroup;
 			children = (
@@ -155,7 +147,6 @@
 		59D0C6CB2ACC66FF00E31E9C /* RainyDay */ = {
 			isa = PBXGroup;
 			children = (
-				59B249242AD4257100AE8185 /* Mappers */,
 				59D0C6FF2ACD367700E31E9C /* Constant */,
 				59D479772AD2EF20009EB5C2 /* Network */,
 				59D0C6FE2ACD367400E31E9C /* Entity */,
@@ -308,6 +299,7 @@
 		59D4799A2AD3205E009EB5C2 /* Transform */ = {
 			isa = PBXGroup;
 			children = (
+				59B249252AD425AE00AE8185 /* WeatherForecastMapper.swift */,
 			);
 			path = Transform;
 			sourceTree = "<group>";
